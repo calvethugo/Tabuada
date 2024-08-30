@@ -94,3 +94,69 @@ h2{
 #multiplication-operations .result {
     margin-left: 0.4rem;
 }
+
+/* Responsividade para Tablets */
+@media (max-width: 768px) {
+    #multiplication-form {
+        max-width: 90%;
+        padding: 1rem;
+    }
+
+    .form-control {
+        width: 100%;
+        margin: 0.5rem 0;
+    }
+
+    .form-control input {
+        width: 100%;
+        max-width: 80px;
+    }
+
+    #multiplication-form input[type='submit'] {
+        width: 100%;
+    }
+
+    #multiplication-operations {
+        max-width: 90%;
+        padding: 1rem;
+    }
+
+    #multiplication-operations .row {
+        width: 100%;
+    }
+}
+
+/* Responsividade para Smartphones */
+@media (max-width: 480px) {
+    body {
+        padding: 1rem;
+    }
+
+    #multiplication-form {
+        padding: 0.5rem;
+        margin: 0.5rem auto;
+    }
+
+    .form-control label {
+        font-size: 0.7rem;
+    }
+
+    .form-control input {
+        padding: 0.5rem;
+        font-size: 0.8rem;
+    }
+
+    #multiplication-form input[type='submit'] {
+        padding: 0.5rem;
+        font-size: 0.9rem;
+    }
+
+    #multiplication-operations {
+        padding: 1rem 0.5rem;
+    }
+
+    #multiplication-operations .row {
+        width: 80%;
+        margin: 0.2rem 0;
+    }
+}
