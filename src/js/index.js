@@ -1,40 +1,70 @@
-// seleção de elementos
 const multiplicationForm = document.querySelector("#multiplication-form");
 const numberInput = document.querySelector("#number");
 const multiplicationInput = document.querySelector("#multiplication");
-
 const multiplicationTable = document.querySelector("#multiplication-operations");
+const multiplicationTitle = document.querySelector("#multiplication-title");
+const resultTag = document.querySelector("#result-tag");
+const resultCount = document.querySelector("#result-count");
 
-// função
-const createTable = (number, multiplicationNumber) => {
-    multiplicationTable.innerHTML = "";
+function createTable(number, limit) {
+  multiplicationTable.replaceChildren();
 
-    for (let i = 1; i <= multiplicationNumber; i++) {
-        const result = number * i;
+  for (let multiplier = 1; multiplier <= limit; multiplier += 1) {
+    const row = document.createElement("div");
+    row.className = "row";
 
-        const template = `
-            <div class="row">
-                <div class="operation">${number} x ${i} = </div>
-                <div class="result">${result}</div>
-            </div>
-        `;
+    const operation = document.createElement("span");
+    operation.className = "operation";
+    operation.textContent = `${number} × ${multiplier} =`;
 
-        const parser = new DOMParser();
-        const htmlTemplate = parser.parseFromString(template, "text/html");
-        const row = htmlTemplate.querySelector(".row");
+    const result = document.createElement("span");
+    result.className = "result";
+    result.textContent = String(number * multiplier);
 
-        multiplicationTable.appendChild(row);
-    }
-};
+    row.append(operation, result);
+    multiplicationTable.appendChild(row);
+  }
 
-// evento
-multiplicationForm.addEventListener("submit", (e) => {
-    e.preventDefault();
+  multiplicationTitle.querySelector("span").textContent = number;
+  resultTag.textContent = "TABLE GENERATED";
+  resultTag.classList.add("ready");
+  resultCount.textContent = `${limit} ${limit === 1 ? "OPERATION" : "OPERATIONS"}`;
+}
 
-    const number = +numberInput.value;
-    const multiplicationNumber = +multiplicationInput.value;
+function showMessage(message) {
+  multiplicationTable.replaceChildren();
+  const emptyState = document.createElement("div");
+  emptyState.className = "empty-state";
+  const symbol = document.createElement("div");
+  symbol.className = "empty-symbol";
+  symbol.textContent = "!";
+  const title = document.createElement("strong");
+  title.textContent = message;
+  emptyState.append(symbol, title);
+  multiplicationTable.appendChild(emptyState);
+  resultTag.textContent = "CHECK INPUT";
+  resultTag.classList.remove("ready");
+  resultCount.textContent = "0 OPERATIONS";
+}
 
-    if (!number || !multiplicationNumber) return;
+multiplicationForm.addEventListener("submit", (event) => {
+  event.preventDefault();
 
-    createTable(number, multiplicationNumber);
+  const rawNumber = numberInput.value.trim();
+  const number = Number(rawNumber);
+  const limit = Number(multiplicationInput.value);
+
+  if (rawNumber === "" || !Number.isFinite(number)) {
+    showMessage("ENTER A VALID NUMBER");
+    numberInput.focus();
+    return;
+  }
+
+  if (!Number.isInteger(limit) || limit < 1 || limit > 100) {
+    showMessage("LIMIT MUST BE FROM 1 TO 100");
+    multiplicationInput.focus();
+    return;
+  }
+
+  createTable(number, limit);
 });
