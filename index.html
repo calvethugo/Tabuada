@@ -1,35 +1,65 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>tabuada js</title>
-    <link rel="stylesheet" href="./src/css/estilos.css">
-    
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#d9d5c9" />
+  <title>ORBIT — Multiplication Console</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./src/css/estilos.css" />
+  <script src="./src/js/index.js" defer></script>
 </head>
-
 <body>
-    <h1>Digite o número e confirme para gerar uma tabuada</h1>
-    <form id="multiplication-form">
-        <div class="form-control">
-            <label for="nunber">Tabuada do:</label>
-            <input type="number" name="number" id="number" placeholder="3"/>
-        </div>
-        <div class="form-control">
-            <label for="multiplication">Multiplicar até:</label>
-            <input type="number" name="multiplication" id="multiplication"/>
-        </div>
-        <input type="submit" value="calcular"/>
-    </form>
-    <div id="multiplication-table">
-        <h2 id="multiplication-title">Tabuada do número: <span></span></h2>
-        <div id="multiplication-operations"> 
-            <p>Informe um número para calcular uma tabuada...</p>
-        </div>
-    </div>
+  <div class="paper-noise" aria-hidden="true"></div>
+  <main class="page-shell">
+    <header class="topbar">
+      <a class="brand" href="#"><span class="brand-icon"><i></i><i></i><i></i></span><span>ORBIT<span class="brand-sub">/ MATH TOOLS</span></span></a>
+      <div class="top-status"><span class="status-dot"></span> CALCULATION MODULE <b>—</b> 01</div>
+      <div class="top-code">EDU SERIES / 1986</div>
+    </header>
 
-    <script src="./src/js/index.js"></script>
+    <section class="intro">
+      <div>
+        <p class="eyebrow">LEARNING INSTRUMENT <span>•</span> MULTIPLICATION TABLE</p>
+        <h1>Numbers in <em>orbit.</em></h1>
+        <p class="intro-copy">Uma calculadora de tabuada com controles simples e leitura clara. Escolha um número, defina até onde multiplicar e acompanhe os resultados.</p>
+      </div>
+      <div class="orbit-art" aria-hidden="true"><div class="orbit-ring ring-one"></div><div class="orbit-ring ring-two"></div><div class="orbit-core">×</div><span class="orbit-point"></span></div>
+    </section>
+
+    <section class="calculator">
+      <div class="input-panel">
+        <div class="panel-top"><div><span class="panel-index">01 / INPUT</span><h2>Set your numbers</h2></div><span class="panel-stamp">OR—01</span></div>
+        <form id="multiplication-form">
+          <div class="field-block">
+            <label for="number">TABUADA DO NÚMERO</label>
+            <div class="number-field"><input type="number" name="number" id="number" placeholder="Ex.: 7" step="any" required /><span>× N</span></div>
+          </div>
+          <div class="field-block">
+            <label for="multiplication">MULTIPLICAR ATÉ</label>
+            <div class="number-field"><input type="number" name="multiplication" id="multiplication" value="10" min="1" max="100" step="1" required /><span>MAX 100</span></div>
+          </div>
+          <button class="calculate-button" type="submit"><span>CALCULATE TABLE</span><span class="button-symbol">↗</span></button>
+          <p class="form-hint">Escolha um número e um limite entre 1 e 100.</p>
+        </form>
+        <div class="input-footer"><span>INPUT READY <i></i></span><span>BASE 10 / DECIMAL</span></div>
+      </div>
+
+      <div class="results-panel">
+        <div class="results-header">
+          <div><span class="panel-index">02 / OUTPUT</span><h2 id="multiplication-title">Multiplication table <span></span></h2></div>
+          <span class="result-tag" id="result-tag">AWAITING INPUT</span>
+        </div>
+        <div id="multiplication-operations" class="results-grid" aria-live="polite">
+          <div class="empty-state"><div class="empty-symbol">×</div><strong>NO TABLE GENERATED</strong><span>YOUR RESULTS WILL APPEAR HERE</span></div>
+        </div>
+        <div class="results-footer"><span id="result-count">0 OPERATIONS</span><span>ORBIT CALC ENGINE <b>●</b></span></div>
+      </div>
+    </section>
+
+    <footer class="footer"><span>ORBIT <b>—</b> MATH INSTRUMENTS</span><span>MAKE NUMBERS MAKE SENSE <b>●</b> LEARN BY EXPLORING</span><span>© 2026</span></footer>
+  </main>
 </body>
-
 </html>
